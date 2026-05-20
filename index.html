@@ -750,50 +750,19 @@ body{
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
 
-          <!-- Norte — Concepción / San Pedro -->
-          <g filter="url(#glow)">
-            <circle cx="270" cy="120" r="5" fill="#3DA05C" opacity=".95"/>
-            <circle cx="270" cy="120" r="11" fill="#3DA05C" opacity=".18"/>
-          </g>
-          <g transform="translate(254,108) scale(.42)" style="color:#3DA05C">
-            <path d="M3 10 L48 2 L54 10 L48 18 Z" fill="#3DA05C" opacity=".8"/>
-            <path d="M20 10 L32 2 L35 3.5 L26 10 L35 16.5 L32 18 Z" fill="#3DA05C" opacity=".55"/>
-          </g>
+          <!-- Sede Administrativa — Asunción (dourado) -->
+          <circle cx="245" cy="308" r="5" fill="#C4A040"/>
+          <circle cx="245" cy="308" r="10" fill="#C4A040" opacity=".25">
+            <animate attributeName="r" values="7;14;7" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".35;0;.35" dur="2s" repeatCount="indefinite"/>
+          </circle>
 
-          <!-- Leste — Alto Paraná, Canindeyú -->
-          <g filter="url(#glow)">
-            <circle cx="338" cy="235" r="5" fill="#72C490" opacity=".95"/>
-            <circle cx="338" cy="235" r="11" fill="#72C490" opacity=".18"/>
-          </g>
-          <g transform="translate(322,223) scale(.42)">
-            <path d="M3 10 L48 2 L54 10 L48 18 Z" fill="#72C490" opacity=".8"/>
-            <path d="M20 10 L32 2 L35 3.5 L26 10 L35 16.5 L32 18 Z" fill="#72C490" opacity=".55"/>
-          </g>
-
-          <!-- Sul — Itapúa, Misiones -->
-          <g filter="url(#glow)">
-            <circle cx="290" cy="360" r="5" fill="#3DA05C" opacity=".95"/>
-            <circle cx="290" cy="360" r="11" fill="#3DA05C" opacity=".18"/>
-          </g>
-          <g transform="translate(274,348) scale(.42)">
-            <path d="M3 10 L48 2 L54 10 L48 18 Z" fill="#3DA05C" opacity=".8"/>
-            <path d="M20 10 L32 2 L35 3.5 L26 10 L35 16.5 L32 18 Z" fill="#3DA05C" opacity=".55"/>
-          </g>
-
-          <!-- Oeste — Chaco / Boquerón -->
-          <g filter="url(#glow)">
-            <circle cx="100" cy="190" r="5" fill="#C4A040" opacity=".95"/>
-            <circle cx="100" cy="190" r="11" fill="#C4A040" opacity=".18"/>
-          </g>
-          <g transform="translate(84,178) scale(.42)">
-            <path d="M3 10 L48 2 L54 10 L48 18 Z" fill="#C4A040" opacity=".8"/>
-            <path d="M20 10 L32 2 L35 3.5 L26 10 L35 16.5 L32 18 Z" fill="#C4A040" opacity=".55"/>
-          </g>
-
-          <!-- Rotas -->
-          <path d="M270 120 Q310 178 338 235" stroke="rgba(61,160,92,.2)" stroke-width="1.2" stroke-dasharray="5 8" fill="none"/>
-          <path d="M338 235 Q320 300 290 360" stroke="rgba(61,160,92,.2)" stroke-width="1.2" stroke-dasharray="5 8" fill="none"/>
-          <path d="M290 360 Q195 280 100 190" stroke="rgba(196,160,64,.18)" stroke-width="1.2" stroke-dasharray="5 8" fill="none"/>
+          <!-- Sede Operativa — La Paloma (verde) -->
+          <circle cx="390" cy="255" r="5" fill="#72C490"/>
+          <circle cx="390" cy="255" r="10" fill="#72C490" opacity=".25">
+            <animate attributeName="r" values="7;14;7" dur="2s" repeatCount="indefinite" begin=".5s"/>
+            <animate attributeName="opacity" values=".35;0;.35" dur="2s" repeatCount="indefinite" begin=".5s"/>
+          </circle>
         </svg>
       </div>
 
@@ -926,7 +895,7 @@ body{
     </div>
     <div class="pill fu">
       <div class="pill-ico">
-        <svg width="20" height="20" viewBox="0 0 20 20" style="color:var(--d3)"><path transform="translate(-62, -46) scale(0.41)" d="M84.48,82.48l6.35-19.98-12.22-.06-3.38,4.2-3.17-.05,1.97-6.47-1.98-6.49,3.18-.08,3.37,4.22,12.24-.06-6.36-20,4.28-.02,11.96,19.56.46.98h15.56c1.05.01,1.77.92,1.84,1.76.07.9-.72,1.96-1.85,1.96l-15.58.03c-.49,1.03-.96,1.88-1.56,2.85l-10.83,17.67-4.27-.02Z" fill="currentColor"/></svg>
+        <svg width="20" height="20" viewBox="72 38 45 45" style="color:var(--d3)"><path d="M84.48,82.48l6.35-19.98-12.22-.06-3.38,4.2-3.17-.05,1.97-6.47-1.98-6.49,3.18-.08,3.37,4.22,12.24-.06-6.36-20,4.28-.02,11.96,19.56.46.98h15.56c1.05.01,1.77.92,1.84,1.76.07.9-.72,1.96-1.85,1.96l-15.58.03c-.49,1.03-.96,1.88-1.56,2.85l-10.83,17.67-4.27-.02Z" fill="currentColor"/></svg>
       </div>
       <div><div class="pill-title">Alcance</div><div class="pill-copy">Sin restricciones geográficas — todo el territorio paraguayo.</div></div>
     </div>

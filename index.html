@@ -437,6 +437,37 @@ body{
 #s6 .chandle{color:var(--d2);}
 #s6 .bg-plane path{fill:var(--g3);}
 
+
+/* ═══ S6 · GRADE DE LOGOS ══════════════════════════════ */
+.prov-logos-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.8rem;
+  margin-top:1.4rem;
+}
+.prov-logo{
+  background:#fff;
+  border:1px solid rgba(38,100,68,.1);
+  border-radius:4px;
+  padding:.9rem 1.1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:60px;
+  transition:box-shadow .2s;
+}
+.prov-logo:hover{
+  box-shadow:0 2px 10px rgba(38,100,68,.12);
+}
+.prov-logo img{
+  max-width:100%;
+  max-height:44px;
+  object-fit:contain;
+  filter:none;
+}
+@media(max-width:840px){
+  .prov-logos-grid{grid-template-columns:repeat(2,1fr);}
+}
 </style>
 </head>
 <body>
@@ -976,32 +1007,51 @@ body{
     <!-- Proveedores -->
     <div class="fu">
       <div class="blk-head">Proveedores del Grupo</div>
-      <div class="prov-grid">
-        <div class="prov"><div class="prov-name">AirTracker</div><div class="prov-desc">Tecnología y rastreo aéreo</div></div>
-        <div class="prov"><div class="prov-name">Banco do Brasil</div><div class="prov-desc">Servicios financieros</div></div>
-        <div class="prov wide"><div class="prov-name">BNF</div><div class="prov-desc">Banco Nacional de Fomento · Paraguay</div></div>
+      <div class="prov-logos-grid">
+        <div class="prov-logo">
+          <img src="Air_Tractor_logo.svg.png" alt="Air Tractor" title="Air Tractor"/>
+        </div>
+        <div class="prov-logo">
+          <img src="Banco_do_Brasil_logo.svg-3.png" alt="Banco do Brasil" title="Banco do Brasil"/>
+        </div>
+        <div class="prov-logo">
+          <img src="hpetersen.png" alt="H. Petersen CAT" title="H. Petersen CAT"/>
+        </div>
+        <div class="prov-logo">
+          <img src="Logo_Bühler_AG.svg.png" alt="Bühler" title="Bühler"/>
+        </div>
+        <div class="prov-logo">
+          <img src="LOGO_JB_ATLAS.png" alt="Banco Atlas" title="Banco Atlas"/>
+        </div>
+        <div class="prov-logo">
+          <img src="logo-4.png" alt="Bancop" title="Bancop"/>
+        </div>
+        <div class="prov-logo">
+          <img src="Logo-BNF-Alta-1024x414.png" alt="BNF" title="BNF"/>
+        </div>
+        <div class="prov-logo">
+          <img src="logo-cofco.webp" alt="COFCO Intl" title="COFCO Intl"/>
+        </div>
+        <div class="prov-logo">
+          <img src="logo-raizen2.png" alt="Raizen" title="Raizen"/>
+        </div>
+        <div class="prov-logo">
+          <img src="louis-dreyfus-company-ldc-vector-logo.png" alt="Louis Dreyfus" title="Louis Dreyfus"/>
+        </div>
+        <div class="prov-logo">
+          <img src="principalmd-2.png" alt="Banco Continental" title="Banco Continental"/>
+        </div>
+        <div class="prov-logo">
+          <img src="rieder.png" alt="Rieder & Cia" title="Rieder & Cia"/>
+        </div>
+        <div class="prov-logo">
+          <img src="Agrotec_Low.png.webp" alt="Agrotec" title="Agrotec"/>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="cstrip fu">
-    <div class="cperson">
-      <div class="cico">
-        <svg width="12" height="5" viewBox="0 0 56 20" style="color:var(--d2)"><use href="#plane"/></svg>
-      </div>
-      <div><div class="cname">Elisete Cremonese</div><div class="chandle">@aerolink</div></div>
-    </div>
-    <div class="cperson">
-      <div class="cico">
-        <svg width="12" height="5" viewBox="0 0 56 20" style="color:var(--d2)"><use href="#plane"/></svg>
-      </div>
-      <div><div class="cname">Ezequiel de Souza (Zico)</div><div class="chandle">@aerolink</div></div>
-    </div>
-    <div class="cwarn">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      Falta completar: telefones / WhatsApp / e-mails
-    </div>
-  </div>
+
 </section>
 
 <!-- ════ S7 · FECHAMENTO ══════════════════════════ -->
@@ -1056,8 +1106,8 @@ body{
       </div>
     </div>
     <div class="cl-rule fu"></div>
-    <p class="cl-tag fu">La fuerza aérea que impulsa la agricultura.</p>
-    <div class="cl-sub fu">Paraguay · Brasil · Aviación Agrícola</div>
+    <p class="cl-tag fu" style="font-family:var(--sans);font-style:italic;font-weight:300;color:#fff;font-size:1.35rem;">La fuerza aérea que impulsa la agricultura.</p>
+    <div class="cl-sub fu">Paraguay</div>
     <div class="fu" style="display:flex;justify-content:center;align-items:center;gap:0;opacity:.32;margin-bottom:2rem;">
       <svg width="5" height="5"><circle cx="2.5" cy="2.5" r="2.5" fill="var(--d3)"/></svg>
       <svg width="140" height="1"><line x1="0" y1=".5" x2="140" y2=".5" stroke="var(--d3)" stroke-width="1" stroke-dasharray="5 9"/></svg>
@@ -1065,7 +1115,14 @@ body{
       <svg width="140" height="1"><line x1="0" y1=".5" x2="140" y2=".5" stroke="var(--d3)" stroke-width="1" stroke-dasharray="5 9"/></svg>
       <svg width="5" height="5"><circle cx="2.5" cy="2.5" r="2.5" fill="var(--d3)"/></svg>
     </div>
-    <div class="cl-handle fu">@aerolink</div>
+    <div class="cl-handle fu" style="display:flex;align-items:center;justify-content:center;gap:.5rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="var(--g6)" stroke="none"/>
+      </svg>
+      @aerolinksa
+    </div>
   </div>
 </section>
 

@@ -305,8 +305,8 @@ body{
 .pill{background:var(--g2);padding:1.6rem 1.5rem;
   display:flex;gap:1rem;transition:background .2s;}
 .pill:hover{background:var(--g3);}
-.pill-ico{width:2.2rem;height:2.2rem;border-radius:50%;
-  background:rgba(46,122,69,.12);border:1px solid rgba(46,122,69,.26);
+.pill-ico{width:3.2rem;height:3.2rem;border-radius:50%;
+  background:rgba(196,160,64,.1);border:1px solid rgba(196,160,64,.35);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .pill-title{font-weight:600;font-size:.82rem;letter-spacing:.06em;
   text-transform:uppercase;color:var(--g7);margin-bottom:.35rem;}
@@ -468,6 +468,36 @@ body{
 @media(max-width:840px){
   .prov-logos-grid{grid-template-columns:repeat(2,1fr);}
 }
+
+/* ═══ ANIMAÇÃO DE POUSO DO AVIÃO ════════════════════════════════════════════ */
+@keyframes landing {
+  0%   { transform: translateX(-120px) translateY(-6px) rotate(-4deg); opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { transform: translateX(-20px) translateY(-1px) rotate(-1deg); }
+  100% { transform: translateX(0px) translateY(0px) rotate(0deg); opacity: 1; }
+}
+@keyframes trailGrow {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  40%  { opacity: 0; }
+  100% { stroke-dashoffset: 0; opacity: .4; }
+}
+.plane-landing {
+  display: inline-block;
+  opacity: 0;
+}
+.trail-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  opacity: 0;
+}
+.trail.on .plane-landing {
+  animation: landing 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: .15s;
+}
+.trail.on .trail-line {
+  animation: trailGrow 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: .15s;
+}
 </style>
 </head>
 <body>
@@ -547,8 +577,10 @@ body{
     <div class="rule fu"></div>
     <p class="tagline fu">La <em>fuerza aérea</em> que<br>impulsa la agricultura.</p>
     <div class="trail fu">
-      <svg width="30" height="11" viewBox="0 0 56 20" style="color:var(--d3)"><use href="#plane"/></svg>
-      <svg width="110" height="1"><line x1="0" y1=".5" x2="110" y2=".5" stroke="var(--d3)" stroke-width="1" stroke-dasharray="5 9" opacity=".4"/></svg>
+      <span class="plane-landing">
+        <svg width="45" height="17" viewBox="0 0 56 20" style="color:var(--d3)"><use href="#plane"/></svg>
+      </span>
+      <svg width="110" height="1"><line class="trail-line" x1="0" y1=".5" x2="110" y2=".5" stroke="var(--d3)" stroke-width="1" stroke-dasharray="5 9"/></svg>
       <svg width="5" height="5"><circle cx="2.5" cy="2.5" r="2.5" fill="var(--d3)" opacity=".35"/></svg>
     </div>
   </div>
@@ -869,9 +901,11 @@ body{
   </div>
   <div class="cap-sub fu">área pulverizada anualmente</div>
 
-  <div class="trail fu" style="opacity:.28;margin-bottom:2rem;">
-    <svg width="20" height="8" viewBox="0 0 56 20" style="color:var(--d3)"><use href="#plane"/></svg>
-    <svg width="190" height="1"><line x1="0" y1=".5" x2="190" y2=".5" stroke="var(--d3)" stroke-width="1" stroke-dasharray="5 9" opacity=".5"/></svg>
+  <div class="trail fu" style="opacity:1;margin-bottom:2rem;">
+    <span class="plane-landing">
+      <svg width="30" height="12" viewBox="0 0 56 20" style="color:var(--d3)"><use href="#plane"/></svg>
+    </span>
+    <svg width="190" height="1"><line class="trail-line" x1="0" y1=".5" x2="190" y2=".5" stroke="var(--d3)" stroke-width="1" stroke-dasharray="5 9" opacity=".5"/></svg>
     <svg width="5" height="5"><circle cx="2.5" cy="2.5" r="2.5" fill="var(--d3)" opacity=".35"/></svg>
   </div>
 
@@ -880,19 +914,19 @@ body{
   <div class="pillars">
     <div class="pill fu">
       <div class="pill-ico">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g7)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--d3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <div><div class="pill-title">Rapidez</div><div class="pill-copy">Atención ágil a grandes áreas en el menor tiempo posible.</div></div>
     </div>
     <div class="pill fu">
       <div class="pill-ico">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g7)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--d3)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
       </div>
       <div><div class="pill-title">Precisión</div><div class="pill-copy">Cada operación evaluada para máxima viabilidad operativa.</div></div>
     </div>
     <div class="pill fu">
       <div class="pill-ico">
-        <svg width="16" height="6" viewBox="0 0 56 20" style="color:var(--g7)"><use href="#plane"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" style="color:var(--d3)"><path transform="translate(-62, -46) scale(0.41)" d="M84.48,82.48l6.35-19.98-12.22-.06-3.38,4.2-3.17-.05,1.97-6.47-1.98-6.49,3.18-.08,3.37,4.22,12.24-.06-6.36-20,4.28-.02,11.96,19.56.46.98h15.56c1.05.01,1.77.92,1.84,1.76.07.9-.72,1.96-1.85,1.96l-15.58.03c-.49,1.03-.96,1.88-1.56,2.85l-10.83,17.67-4.27-.02Z" fill="currentColor"/></svg>
       </div>
       <div><div class="pill-title">Alcance</div><div class="pill-copy">Sin restricciones geográficas — todo el territorio paraguayo.</div></div>
     </div>

@@ -1517,15 +1517,18 @@ function hero3D(){
   photo.visible=false; photo.renderOrder=3; P.add(photo);
   /* hélice girando */
   const pc=document.createElement('canvas'); pc.width=pc.height=128; const q=pc.getContext('2d');
-  const gr=q.createRadialGradient(64,64,4,64,64,62); gr.addColorStop(0,'rgba(235,232,220,.0)'); gr.addColorStop(.35,'rgba(235,232,220,.07)'); gr.addColorStop(.92,'rgba(235,232,220,.12)'); gr.addColorStop(1,'rgba(235,232,220,0)');
-  q.fillStyle=gr; q.beginPath(); q.arc(64,64,62,0,7); q.fill();
-  for(let k=0;k<5;k++){ const an=k*Math.PI*2/5; q.save(); q.translate(64,64); q.rotate(an);
-    const bg2=q.createLinearGradient(0,0,0,-61); bg2.addColorStop(0,'rgba(38,40,40,.85)'); bg2.addColorStop(.85,'rgba(52,54,54,.55)'); bg2.addColorStop(1,'rgba(52,54,54,0)');
-    q.fillStyle=bg2; q.beginPath(); q.moveTo(-2.2,-6); q.quadraticCurveTo(-5.5,-36,-3,-60); q.lineTo(3,-60); q.quadraticCurveTo(5.5,-36,2.2,-6); q.closePath(); q.fill();
-    q.globalAlpha=.25; q.rotate(-.16); q.fill(); q.restore(); }
-  const ptx=new THREE.CanvasTexture(pc); ptx.center.set(.5,.5);
+  pc.width=pc.height=256; 
+  const gr=q.createRadialGradient(128,128,22,128,128,124); gr.addColorStop(0,'rgba(28,30,28,0)'); gr.addColorStop(.25,'rgba(28,30,28,.10)'); gr.addColorStop(.9,'rgba(28,30,28,.16)'); gr.addColorStop(1,'rgba(28,30,28,0)');
+  q.fillStyle=gr; q.beginPath(); q.arc(128,128,124,0,7); q.fill();
+  /* 5 palas negras vistas desde atrás: giro horario (PT6A, visto desde la cabina), estela detrás de cada pala */
+  function blade(alpha){ const g2=q.createLinearGradient(0,-20,0,-122); g2.addColorStop(0,'rgba(18,19,19,'+alpha+')'); g2.addColorStop(.88,'rgba(26,27,27,'+alpha+')'); g2.addColorStop(1,'rgba(26,27,27,0)');
+    q.fillStyle=g2; q.beginPath(); q.moveTo(-4,-20); q.quadraticCurveTo(-10,-70,-6,-120); q.lineTo(6,-120); q.quadraticCurveTo(10,-70,4,-20); q.closePath(); q.fill(); }
+  for(let k=0;k<5;k++){ q.save(); q.translate(128,128); q.rotate(k*Math.PI*2/5);
+    for(let s=6;s>=1;s--){ q.save(); q.rotate(-s*.045); blade(.10-s*.012); q.restore(); }
+    blade(.92); q.restore(); }
+  const ptx=new THREE.CanvasTexture(pc); ptx.center.set(.5,.5); ptx.encoding=THREE.sRGBEncoding; ptx.anisotropy=4;
   const prop=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:ptx,transparent:true,depthWrite:false,toneMapped:false}));
-  const pcn=L2(1370,447); prop.position.set(pcn.x,pcn.y,.02); prop.scale.set(PW*287/IW,PH*377/IH,1); prop.rotation.z=.164; prop.renderOrder=4; P.add(prop);
+  const pcn=L2(1370,447); prop.position.set(pcn.x,pcn.y,.02); prop.scale.set(PW*287/IW,PH*377/IH,1); prop.rotation.z=.164; /* detrás de la foto: el fuselaje tapa las palas que pasan por detrás */ prop.renderOrder=2.5; P.add(prop);
   scene.add(P);
   /* sombra sobre el cultivo */
   const sc=document.createElement('canvas'); sc.width=sc.height=128; const sq=sc.getContext('2d');
@@ -1581,7 +1584,7 @@ function hero3D(){
     P.rotateY(mx*.12); P.rotateX(my*.06);
     P.updateMatrixWorld();
     axR.set(1,0,0).applyQuaternion(P.quaternion); axU.set(0,1,0).applyQuaternion(P.quaternion); axF.set(0,0,1).applyQuaternion(P.quaternion);
-    ptx.rotation-=dt*15; prop.material.opacity=.9+Math.sin(t*53)*.1;
+    ptx.rotation+=dt*13; prop.material.opacity=1;
     shadow.position.set(P.position.x-2.5, .04, P.position.z+3.2); shadow.material.opacity=Math.max(.15,1-(P.position.y-4)/8);
     for(let i=0;i<N;i++){ life[i]+=dt/1.7; if(life[i]>=1){ spawn(i); }
       const k=i*3; pos[k]+=vel[k]*dt; pos[k+1]+=vel[k+1]*dt; pos[k+2]+=vel[k+2]*dt; vel[k]*=.985; vel[k+1]-=dt*.6;

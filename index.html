@@ -397,6 +397,16 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
 .alogo .lb-cls-1{fill:var(--logo-ink,#fff)}
 .alogo .lb-cls-2{fill:var(--gold)}
 
+.pelimg{position:relative;display:flex;flex-direction:column;align-items:center;padding:10px 0 34px}
+.pelimg img{width:min(100%,600px);height:auto;position:relative;z-index:1;filter:drop-shadow(0 18px 22px rgba(16,41,27,.18));animation:hover 6s ease-in-out infinite}
+.pshadow{position:absolute;bottom:6px;left:50%;width:62%;height:22px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(16,41,27,.22),rgba(16,41,27,0));animation:hovsh 6s ease-in-out infinite}
+@keyframes hover{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(-12px) rotate(.4deg)}}
+@keyframes hovsh{0%,100%{transform:translateX(-50%) scale(1);opacity:1}50%{transform:translateX(-50%) scale(.86);opacity:.7}}
+@media (prefers-reduced-motion: reduce){.pelimg img,.pshadow{animation:none}}
+.pel2{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);margin-top:36px;align-items:start}
+.pel2 .tl{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+.pel2 .tl::before{display:none}
+@media (max-width:860px){.pel2{grid-template-columns:minmax(0,1fr)}}
 .hero-logo svg,.close-logo svg{width:100%;height:auto;display:block}
 .brand .lg.alogo svg{width:112px;height:66px;margin:-10px 0 -10px -18px}
 .brand .chipl svg{width:108px;height:34px}
@@ -787,13 +797,16 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
       <p class="lead rv" style="--i:2" data-k="s12.lead">Será la primera aeronave agrícola 100% eléctrica incorporada en Paraguay. No tripulada, fabricada por Pyka (EE. UU.) y operada bajo la marca AeroVolt.</p>
     </div>
     <div class="pel">
-      <div class="specs rv" style="--i:2">
+      <figure class="pelimg rv" style="--i:2;margin:0"><img src="assets/pelican-2.webp" alt="Pelican 2 · Pyka" width="584" height="275"><span class="pshadow" aria-hidden="true"></span></figure>
+      <div class="specs rv" style="--i:3">
         <div><div class="big"><span class="n count">300</span><span class="u">L</span></div><div class="lbl" data-k="pe1">tanque de aplicación</div></div>
         <div><div class="big"><span class="n count">90</span><span class="u">ha/h</span></div><div class="lbl" data-k="pe2">modelo prudencial · 105 ha/h de capacidad técnica</div></div>
         <div><div class="big"><span class="n count">100</span><span class="u">%</span></div><div class="lbl" data-k="pe3">eléctrica, con baterías intercambiables</div></div>
         <div><div class="big">24/7</div><div class="lbl" data-k="pe4">operación autónoma de día y de noche</div></div>
       </div>
-      <figure class="swath rv" style="--i:3;margin:0">
+    </div>
+    <div class="pel2">
+      <figure class="swath rv" style="--i:1;margin:0">
         <svg id="swath" viewBox="0 0 360 230" aria-hidden="true">
           <defs><pattern id="rows" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#E4EADC"/><rect y="0" width="8" height="3" fill="#D3DECB"/></pattern></defs>
           <path d="M18 24 L330 14 L344 196 L30 212 Z" fill="url(#rows)" stroke="#286444" stroke-width="1.2"/>
@@ -805,13 +818,15 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
         </svg>
         <figcaption data-k="pe.cap">Patrón de cobertura autónoma · ilustrativo</figcaption>
       </figure>
-    </div>
-    <div class="subh rv" style="margin-top:40px" data-k="tl.t">Cronograma de incorporación</div>
-    <div class="tl" style="margin-top:6px">
-      <div class="done rv" style="--i:1"><span class="d" data-k="tl1d">May–Ago/26</span><b data-k="tl1">Contrato y depósito</b></div>
-      <div class="now rv" style="--i:2"><span class="d" data-k="tl2d">Sep–Oct/26</span><b data-k="tl2">Fabricación y regulación</b><span class="today" data-k="today">Hoy</span></div>
-      <div class="rv" style="--i:3"><span class="d" data-k="tl3d">Nov–Dic/26</span><b data-k="tl3">Entrega e importación</b></div>
-      <div class="rv" style="--i:4"><span class="d" data-k="tl4d">Post entrega</span><b data-k="tl4">Inicio comercial</b></div>
+      <div>
+    <div class="subh rv" data-k="tl.t">Cronograma de incorporación</div>
+      <div class="tl" style="margin-top:6px">
+        <div class="done rv" style="--i:1"><span class="d" data-k="tl1d">May–Ago/26</span><b data-k="tl1">Contrato y depósito</b></div>
+        <div class="now rv" style="--i:2"><span class="d" data-k="tl2d">Sep–Oct/26</span><b data-k="tl2">Fabricación y regulación</b><span class="today" data-k="today">Hoy</span></div>
+        <div class="rv" style="--i:3"><span class="d" data-k="tl3d">Nov–Dic/26</span><b data-k="tl3">Entrega e importación</b></div>
+        <div class="rv" style="--i:4"><span class="d" data-k="tl4d">Post entrega</span><b data-k="tl4">Inicio comercial</b></div>
+      </div>
+      </div>
     </div>
     <p class="src rv" data-k="s12.src">Fuente: Pyka; documentación técnico-económica Aerolink; autorización especial DINAC.</p>
   </div>

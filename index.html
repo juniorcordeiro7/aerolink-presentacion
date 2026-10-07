@@ -437,6 +437,25 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
 .brandrow span{width:1px;height:26px;background:var(--line-d)}
 .brandrow .tbw svg{height:34px;width:auto}
 @media (max-width:860px){.paths{grid-template-columns:minmax(0,1fr)}.path,.target{grid-column:1;grid-row:auto}.arrowto{display:none}.tk{grid-template-columns:minmax(0,1fr)}.tk > div:nth-child(2n){padding-left:0;border-left:0}}
+/* ── intro motion ── */
+#intro{position:fixed;inset:0;z-index:200;background:radial-gradient(ellipse at 50% 45%,#173A27 0%,var(--forest) 70%);display:flex;align-items:center;justify-content:center;transition:opacity .9s var(--ease),visibility .9s}
+#intro.out{opacity:0;visibility:hidden;pointer-events:none}
+.no-intro #intro{display:none}
+.i-stage{position:relative;width:min(560px,82vw);display:flex;flex-direction:column;align-items:center}
+.i-logo{width:100%;position:relative;visibility:hidden;transition:filter 1.2s var(--ease)}
+.i-logo.glow{filter:drop-shadow(0 0 16px rgba(217,173,95,.38))}
+.i-logo.ready{visibility:visible}
+.i-logo svg{width:100%;height:auto;display:block;overflow:visible}
+.i-logo path{fill-opacity:0;stroke-width:.5;stroke-linejoin:round;transition:fill-opacity 1s var(--ease),stroke-opacity 1.2s var(--ease)}
+.i-logo .lb-cls-1{stroke:#fff}.i-logo .lb-cls-2{stroke:var(--gold-hi)}
+.i-logo.filled path{fill-opacity:1;stroke-opacity:0}
+.i-shine{mix-blend-mode:screen}
+.i-trail{position:fixed;left:0;top:50%;width:100vw;height:200px;transform:translateY(-50%);pointer-events:none;opacity:.55}
+.i-plane{position:fixed;left:0;top:50%;width:46px;height:46px;margin-top:-23px;color:var(--gold-hi);filter:drop-shadow(0 0 10px rgba(217,173,95,.45));transform:translateX(-80px);will-change:transform}
+.i-tag{margin-top:6px;font-style:italic;font-weight:300;font-size:clamp(.95rem,1.6vw,1.15rem);color:var(--mist);opacity:0;transform:translateY(8px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.i-tag.in{opacity:.9;transform:none}
+.i-skip{all:unset;cursor:pointer;position:fixed;right:24px;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mist-2);padding:8px 10px}
+.i-skip:hover,.i-skip:focus-visible{color:var(--gold-hi)}
 .hero-logo svg,.close-logo svg{width:100%;height:auto;display:block}
 .brand .lg.alogo svg{width:112px;height:66px;margin:-10px 0 -10px -18px}
 .brand .chipl svg{width:108px;height:34px}
@@ -464,6 +483,44 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
   <symbol id="bolt" viewBox="0 0 20 28"><path fill="currentColor" d="M12 0 0 16h8l-2 12L20 10h-8l2-10z"/></symbol>
 </svg>
 
+<div id="intro" aria-hidden="true">
+  <div class="i-stage">
+    <svg class="i-trail" viewBox="0 0 1000 200" preserveAspectRatio="none"><line id="iTrail" x1="0" y1="100" x2="1000" y2="100" stroke="#D9AD5F" stroke-width="1.2" stroke-dasharray="6 10" vector-effect="non-scaling-stroke"/></svg>
+    <svg class="i-plane" viewBox="70 35.7 48.7 48.8"><path fill="currentColor" d="M84.48,82.48l6.35-19.98-12.22-.06-3.38,4.2-3.17-.05,1.97-6.47-1.98-6.49,3.18-.08,3.37,4.22,12.24-.06-6.36-20,4.28-.02,11.96,19.56.46.98h15.56c1.05.01,1.77.92,1.84,1.76.07.9-.72,1.96-1.85,1.96l-15.58.03c-.49,1.03-.96,1.88-1.56,2.85l-10.83,17.67-4.27-.02Z"/></svg>
+    <div class="i-logo alogo"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190.04 111.16">
+  
+  <path class="lb-cls-1" d="M31.16,66.89l-2.98,6.07h-6.48l12.35-23.4h7.9l4.1,23.4h-6.65l-.88-6.07h-7.36ZM36.86,55.22l-3.39,6.92h4.38l-.98-6.92Z"/>
+  <path class="lb-cls-1" d="M52.26,65.94c0,2.44,1.12,3.36,2.71,3.36,1.73,0,2.95-.88,3.43-2.27h6c-1.42,4.1-4.88,6.41-9.8,6.41-4.54,0-8.45-2.04-8.45-7.56,0-7.02,4.75-11.5,10.99-11.5,5.77,0,8.28,3.53,8.28,7.5,0,1.12-.24,2.44-.61,3.56h-12.55v.51ZM52.97,61.7h6.21c.03-.2.03-.31.03-.37,0-1.7-.78-2.82-2.58-2.82-1.56,0-2.88,1.19-3.66,3.19Z"/>
+  <path class="lb-cls-1" d="M80.72,54.47l-.85,4.99c-3.26-.34-6.27.31-7.46,6.85l-1.19,6.65h-6.11l3.15-17.98h6.11l-.61,3.56,1.76-2.58c1.15-1.09,2.68-1.59,3.83-1.59.58,0,.95.03,1.36.1Z"/>
+  <path class="lb-cls-1" d="M98.93,62.44c0,5.83-3.83,10.99-11.26,10.99-5.87,0-8.89-3.29-8.89-8.07,0-5.83,3.83-10.99,11.26-10.99,5.87,0,8.89,3.29,8.89,8.07ZM92.49,62.58c0-2.37-.92-4.07-2.88-4.07-2.92,0-4.38,3.29-4.38,6.72,0,2.37.92,4.07,2.88,4.07,2.92,0,4.38-3.29,4.38-6.72Z"/>
+  <path class="lb-cls-2" d="M105.72,66.45c-.14.75-.24,1.36-.24,1.83,0,.95.47,1.12,1.8,1.05l-.68,3.76c-.95.14-1.9.2-3.26.2-2.92,0-4.24-.81-4.24-2.78,0-1.02.17-2.27.47-3.97l3.32-18.52h6.11l-3.29,18.42Z"/>
+  <path class="lb-cls-2" d="M107.62,72.96l3.22-18.11h6.11l-3.22,18.11h-6.11ZM118,49.96c0,2.34-1.19,3.49-3.43,3.49-1.97,0-3.02-.95-3.02-2.48,0-2.34,1.19-3.49,3.43-3.49,1.97,0,3.02.95,3.02,2.48Z"/>
+  <path class="lb-cls-2" d="M136.69,59.02c0,.95-.14,1.97-.41,3.49l-1.87,10.45h-6.11l1.63-9.09c.2-1.19.34-2.17.34-2.82,0-1.53-.61-2.54-2.41-2.54-1.93,0-3.46,1.93-4.21,6.04l-1.46,8.41h-6.11l3.19-18.11h6.11l-.48,2.58,2.04-2c1.25-.68,2.61-1.05,4.27-1.05,3.7,0,5.46,1.97,5.46,4.65Z"/>
+  <path class="lb-cls-2" d="M156.9,72.96h-7.43l-4.1-6.78-1.8,1.53-.92,5.26h-6.11l4.41-24.93h6.11l-2.54,14.38,7.7-7.56h7.16l-9.16,8.45,6.68,9.67Z"/>
+  <g>
+    <path class="lb-cls-1" d="M52.48,84.66l-.58,1.76h-.9l1.91-5.32h1.1l1.86,5.32h-.92l-.58-1.76h-1.89ZM54.15,83.99l-.7-2.19-.74,2.19h1.44Z"/>
+    <path class="lb-cls-1" d="M57.48,86.42l-1.86-5.32h.92l1.5,4.67,1.54-4.67h.9l-1.91,5.32h-1.1Z"/>
+    <path class="lb-cls-1" d="M61.14,86.42v-5.32h.85v5.32h-.85Z"/>
+    <path class="lb-cls-1" d="M64.2,84.66l-.58,1.76h-.9l1.91-5.32h1.1l1.86,5.32h-.92l-.58-1.76h-1.89ZM65.87,83.99l-.7-2.19-.74,2.19h1.44Z"/>
+    <path class="lb-cls-1" d="M72.63,82.81v.08s-.83,0-.83,0l-.02-.08c-.15-.72-.59-1.17-1.39-1.17-.99,0-1.61.85-1.61,2.11,0,1.32.63,2.14,1.57,2.14.8,0,1.24-.47,1.39-1.19l.02-.08h.84v.08c-.12,1.04-.89,1.84-2.28,1.84-1.52,0-2.45-1.13-2.45-2.75s1.05-2.79,2.55-2.79c1.39,0,2.11.77,2.22,1.82Z"/>
+    <path class="lb-cls-1" d="M73.68,86.42v-5.32h.85v5.32h-.85Z"/>
+    <path class="lb-cls-1" d="M80.59,83.75c0,1.64-.93,2.77-2.56,2.77s-2.57-1.13-2.57-2.77.93-2.77,2.57-2.77,2.56,1.12,2.56,2.77ZM79.68,83.75c0-1.33-.62-2.12-1.65-2.12s-1.66.79-1.66,2.12.62,2.12,1.66,2.12,1.65-.8,1.65-2.12ZM77.73,80.74l.49-.79h.77l-.75.79h-.51Z"/>
+    <path class="lb-cls-1" d="M84.78,86.42l-2.36-4.39c.02.61.03,1.3.03,1.84v2.55h-.85v-5.32h1.2l2.38,4.42c-.02-.6-.02-1.31-.02-1.86v-2.56h.83v5.32s-1.21,0-1.21,0Z"/>
+    <path class="lb-cls-1" d="M89.8,84.66l-.58,1.76h-.9l1.91-5.32h1.1l1.86,5.32h-.92l-.58-1.76h-1.89ZM91.47,83.99l-.7-2.19-.74,2.19h1.44Z"/>
+    <path class="lb-cls-1" d="M98.19,83.78v2.64h-.71l-.03-.9-.24.52c-.3.32-.75.49-1.34.49-1.52,0-2.41-1.13-2.41-2.75s1.06-2.79,2.56-2.79c1.4,0,2.12.77,2.23,1.82v.08s-.84,0-.84,0l-.02-.08c-.14-.72-.58-1.17-1.39-1.17-.99,0-1.63.85-1.63,2.11,0,1.32.64,2.14,1.59,2.14.79,0,1.36-.56,1.4-1.42h-1.19v-.68h2.01Z"/>
+    <path class="lb-cls-1" d="M103.42,86.42h-.93c-.14-.35-.21-.68-.27-1.27-.07-.56-.28-.92-.76-.95-.13,0-.26,0-.39,0h-.83v2.22h-.85v-5.32h1.84c.29,0,.48,0,.73.03.77.1,1.35.51,1.35,1.42,0,.69-.42,1.1-.99,1.27.48.21.68.67.73,1.23.06.67.15,1.08.37,1.37ZM101.12,83.54c.22,0,.35,0,.48-.02.46-.05.81-.31.81-.87s-.29-.79-.74-.86c-.14-.02-.28-.03-.49-.03h-.94v1.77h.89Z"/>
+    <path class="lb-cls-1" d="M104.28,86.42v-5.32h.85v5.32h-.85ZM104.41,80.74l.49-.79h.77l-.75.79h-.51Z"/>
+    <path class="lb-cls-1" d="M110.83,82.81v.08s-.83,0-.83,0l-.02-.08c-.15-.72-.59-1.17-1.39-1.17-.99,0-1.61.85-1.61,2.11,0,1.32.63,2.14,1.57,2.14.8,0,1.24-.47,1.39-1.19l.02-.08h.84v.08c-.12,1.04-.89,1.84-2.28,1.84-1.52,0-2.45-1.13-2.45-2.75s1.05-2.79,2.55-2.79c1.39,0,2.11.77,2.22,1.82Z"/>
+    <path class="lb-cls-1" d="M116.66,83.75c0,1.64-.93,2.77-2.56,2.77s-2.57-1.13-2.57-2.77.93-2.77,2.57-2.77,2.56,1.12,2.56,2.77ZM115.74,83.75c0-1.33-.62-2.12-1.65-2.12s-1.66.79-1.66,2.12.62,2.12,1.66,2.12,1.65-.8,1.65-2.12Z"/>
+    <path class="lb-cls-1" d="M121.35,86.42h-3.68v-5.32h.85v4.62h2.83v.7Z"/>
+    <path class="lb-cls-1" d="M123.13,84.66l-.58,1.76h-.9l1.91-5.32h1.1l1.86,5.32h-.92l-.58-1.76h-1.89ZM124.79,83.99l-.7-2.19-.74,2.19h1.44Z"/>
+  </g>
+  <path class="lb-cls-2" d="M90.83,30.61c-19.66,2.8-30.16,10.4-30.16,10.4,0,0,3.04.16,5,.3,1.13-.67,5.4-4.14,14.28-6.8,9.9-2.96,18.44-3.12,18.44-3.12,0,0-7.24.93-13.28,3.6-6.04,2.68-11.93,7.39-11.93,7.39,4.69,1.01,10.53,2.98,10.53,2.98,0,0,7.85-6.99,20.36-9.78,12.51-2.79,25.99,2.77,25.99,2.77,0,0-19.57-10.56-39.24-7.76Z"/>
+</svg></div>
+    <p class="i-tag" data-k="hero.tag">La fuerza aérea que impulsa la agricultura.</p>
+  </div>
+  <button type="button" class="i-skip" id="iSkip" data-k="skip">Saltar ›</button>
+</div>
 <div id="prog"></div>
 <header class="top" id="top">
   <a class="mark" href="#hero" aria-label="Aerolink"><svg><use href="#plane"/></svg>AEROLINK</a>
@@ -1133,6 +1190,7 @@ const T = {
  'hero.sub':['Atualização para potencial sócio estratégico.','Briefing for a prospective strategic partner.'],
  'hero.tag':['A força aérea que impulsiona a agricultura.','The air force driving agriculture forward.'],
  'hero.cue':['Role','Scroll'],
+ 'skip':['Pular ›','Skip ›'],
  'ch1':['Aerolink hoje','Aerolink today'],
  'ch2':['Ativos e frota','Assets and fleet'],
  'ch3':['Solidez financeira','Financial strength'],
@@ -1600,7 +1658,52 @@ function hero3D(){
 /* ═════════ INICIO ═════════ */
 let start='es';
 const h=(location.hash||'').slice(1); if(['es','pt','en'].includes(h)) start=h; else { try{ const s=localStorage.getItem('aerolink-lang'); if(['es','pt','en'].includes(s)) start=s; }catch(e){} }
+/* ═════════ INTRO: avión + logo en líneas + brillo ═════════ */
+function intro(){
+  const box=document.getElementById('intro'); if(!box) return;
+  let seen=false; try{ seen=sessionStorage.getItem('aerolink-intro')==='1'; }catch(e){}
+  if(location.hash==='#intro') seen=false;
+  if(RM||seen){ box.remove(); return; }
+  try{ sessionStorage.setItem('aerolink-intro','1'); }catch(e){}
+  document.documentElement.style.overflow='hidden';
+  const svg=box.querySelector('.i-logo svg'), logo=box.querySelector('.i-logo'), plane=box.querySelector('.i-plane'), trail=document.getElementById('iTrail'), tag=box.querySelector('.i-tag');
+  const paths=[...svg.querySelectorAll('path')];
+  const vb=svg.viewBox.baseVal;
+  /* clip + brillo */
+  const NSs='http://www.w3.org/2000/svg';
+  const defs=svg.querySelector('defs')||svg.insertBefore(document.createElementNS(NSs,'defs'),svg.firstChild);
+  defs.innerHTML+='<clipPath id="iClip"></clipPath><linearGradient id="iShine" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#FFF6DD" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>';
+  const clip=svg.querySelector('#iClip'); paths.forEach(p=>clip.appendChild(p.cloneNode()));
+  const clipG=document.createElementNS(NSs,'g'); clipG.setAttribute('clip-path','url(#iClip)');
+  const mover=document.createElementNS(NSs,'g'); const shine=document.createElementNS(NSs,'rect');
+  shine.setAttribute('class','i-shine'); shine.setAttribute('x',vb.x-60); shine.setAttribute('y',vb.y-20); shine.setAttribute('width',64); shine.setAttribute('height',vb.height+40); shine.setAttribute('fill','url(#iShine)'); shine.setAttribute('transform','skewX(-18)');
+  mover.appendChild(shine); clipG.appendChild(mover); clipG.style.opacity=0; svg.appendChild(clipG);
+  /* trazos ordenados de izquierda a derecha, sincronizados con el avión */
+  const items=paths.map(p=>{ const L=p.getTotalLength(); p.style.strokeDasharray=L; p.style.strokeDashoffset=L; const bb=p.getBBox(); return {p,L,x:bb.x}; }).sort((a,b)=>a.x-b.x);
+  const minX=items[0].x, maxX=items[items.length-1].x, T0=650, SWEEP=1500;
+  items.forEach(it=>{ const d=T0+((it.x-minX)/(maxX-minX||1))*SWEEP;
+    it.p.animate([{strokeDashoffset:it.L},{strokeDashoffset:0}],{duration:1100,delay:d,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}); });
+  /* avión cruzando la pantalla */
+  const lr=logo.getBoundingClientRect(); const yy=lr.top+lr.height*.36; plane.style.top=yy+'px'; trail.closest('svg').style.top=yy+'px';
+  logo.classList.add('ready');
+  const W=innerWidth;
+  plane.animate([{transform:'translateX(-90px) translateY(18px) rotate(-6deg)'},{transform:'translateX('+(W*.45)+'px) translateY(0) rotate(0deg)',offset:.5},{transform:'translateX('+(W+90)+'px) translateY(-26px) rotate(-8deg)'}],{duration:2600,delay:150,easing:'cubic-bezier(.4,.1,.3,1)',fill:'forwards'});
+  trail.style.transformOrigin='0 50%'; trail.style.transformBox='fill-box';
+  trail.animate([{opacity:0,transform:'scaleX(0)'},{opacity:1,offset:.2},{opacity:.9,transform:'scaleX(1)'}],{duration:2600,delay:150,easing:'cubic-bezier(.4,.1,.3,1)',fill:'forwards'});
+  trail.animate([{opacity:.9},{opacity:0}],{duration:700,delay:2700,fill:'forwards'});
+  const timers=[];
+  timers.push(setTimeout(()=>logo.classList.add('filled'),2700));
+  timers.push(setTimeout(()=>{ tag.classList.add('in'); },3000));
+  timers.push(setTimeout(()=>logo.classList.add('glow'),3100));
+  timers.push(setTimeout(()=>logo.classList.remove('glow'),4300));
+  timers.push(setTimeout(()=>{ clipG.style.opacity=1; mover.animate([{transform:'translateX(0px)'},{transform:'translateX('+(vb.width+140)+'px)'}],{duration:1500,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'}); },3150));
+  function done(){ timers.forEach(clearTimeout); box.classList.add('out'); document.documentElement.style.overflow=''; setTimeout(()=>box.remove(),1000); }
+  timers.push(setTimeout(done,5200));
+  document.getElementById('iSkip').addEventListener('click',done);
+  addEventListener('keydown',function k(e){ if(box.isConnected && !box.classList.contains('out')){ done(); } removeEventListener('keydown',k); },{once:true});
+}
 buildNav(); setLang(start); updateChap();
+try{ intro(); }catch(e){ console.warn(e); const b=document.getElementById('intro'); if(b) b.remove(); document.documentElement.style.overflow=''; }
 try{ hero3D(); }catch(e){ console.warn(e); }
 })();
 </script>

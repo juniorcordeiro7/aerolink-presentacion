@@ -187,8 +187,14 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
 .crop{display:flex;flex-direction:column;gap:12px;padding-top:22px;border-top:2px solid var(--leaf);min-width:0}
 .crop:nth-child(2){border-color:var(--mist-2)}
 .crop:nth-child(3){border-color:var(--gold-hi)}
-.crop .name{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-2)}
-.crop .name img{width:26px;height:26px;object-fit:contain;filter:brightness(0) invert(.92)}
+.crop .name{display:flex;align-items:center;gap:16px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-2)}
+.crop .name .ic{flex:none;width:72px;height:72px;border-radius:50%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--leaf) 16%,transparent),color-mix(in srgb,var(--leaf) 4%,transparent) 70%);border:1px solid color-mix(in srgb,var(--leaf) 22%,transparent)}
+.crop .name img{width:auto;height:52px;object-fit:contain;transform-origin:50% 100%;animation:sway 4.6s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.crop:nth-child(2) .name img{animation-delay:-1.5s;animation-duration:5.2s}
+.crop:nth-child(3) .name img{animation-delay:-3s;animation-duration:4.9s}
+.crop:hover .name img{animation-duration:2.2s}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-1px)}}
+@media (prefers-reduced-motion: reduce){.crop .name img{animation:none}}
 .crop .big{font-size:clamp(2.2rem,3.8vw,3.2rem);color:var(--mist)}
 .crop .grow{font-size:.84rem;color:var(--leaf)}
 .crop .note{margin-top:auto;padding:16px 18px;background:color-mix(in srgb,var(--mist) 5%,transparent);font-size:.9rem;color:var(--mist-2);line-height:1.5}
@@ -686,21 +692,21 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
     </div>
     <div class="crops">
       <div class="crop rv" style="--i:1">
-        <div class="name"><img src="assets/cultivos/arroz.png" alt=""><span data-k="c.rice">Arroz</span></div>
+        <div class="name"><span class="ic"><img src="assets/cultivos/arroz.png" alt=""></span><span data-k="c.rice">Arroz</span></div>
         <div class="big">~<span class="n">210.000</span><span class="u">ha</span></div>
         <div class="lbl" data-k="c.planted">cultivadas en Paraguay</div>
         <div class="grow" data-k="c.rice.g">+60% en los últimos 10 años</div>
         <div class="note" data-k="c.rice.n"><b>~35%</b> de participación de Aerolink en la aplicación aérea de arroz.</div>
       </div>
       <div class="crop rv" style="--i:2">
-        <div class="name"><img src="assets/cultivos/soja.png" alt=""><span data-k="c.soy">Soja</span></div>
+        <div class="name"><span class="ic"><img src="assets/cultivos/soja.png" alt=""></span><span data-k="c.soy">Soja</span></div>
         <div class="big"><span class="n">3,8</span><span class="u">M ha</span></div>
         <div class="lbl" data-k="c.planted">cultivadas en Paraguay</div>
         <div class="grow" data-k="c.soy.g">+450.000 ha en los últimos 10 años</div>
         <div class="note" data-k="c.soy.n">Mercado de alto potencial: <b>~15.000 ha</b> atendidas hoy.</div>
       </div>
       <div class="crop rv" style="--i:3">
-        <div class="name"><img src="assets/cultivos/maiz.png" alt=""><span data-k="c.corn">Maíz</span></div>
+        <div class="name"><span class="ic"><img src="assets/cultivos/maiz.png" alt=""></span><span data-k="c.corn">Maíz</span></div>
         <div class="big"><span class="n">800–900</span><span class="u" data-k="u.kha">mil ha</span></div>
         <div class="lbl" data-k="c.planted">cultivadas en Paraguay</div>
         <div class="grow" data-k="c.corn.g">Gran mercado disponible</div>

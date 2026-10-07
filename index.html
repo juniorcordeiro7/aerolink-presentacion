@@ -206,6 +206,17 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
 .map .shape{position:absolute;inset:0;background:linear-gradient(160deg,var(--brand),#1E4D35);
   -webkit-mask:url('assets/mapa-paraguay.png') center/contain no-repeat;mask:url('assets/mapa-paraguay.png') center/contain no-repeat}
 .pins{position:absolute;inset:0}
+.halos{position:absolute;inset:0;-webkit-mask:url('assets/mapa-paraguay.png') center/contain no-repeat;mask:url('assets/mapa-paraguay.png') center/contain no-repeat;pointer-events:none}
+.halo{position:absolute;width:30%;aspect-ratio:1;margin:-15% 0 0 -15%;border-radius:50%;transform:scale(0);opacity:0;transition:transform 1.4s cubic-bezier(.22,.61,.36,1),opacity 1s;transition-delay:var(--d,0s)}
+.halo.al{background:radial-gradient(closest-side,rgba(243,238,227,.55),rgba(243,238,227,0))}
+.halo.fp{background:radial-gradient(closest-side,rgba(199,22,24,.5),rgba(199,22,24,0))}
+.halo.both{background:radial-gradient(closest-side,rgba(232,170,150,.55),rgba(199,22,24,0))}
+.halo.show{transform:scale(1);opacity:1}
+.pin.base.both{background:conic-gradient(#F3EEE3 0 50%,#C71618 50% 100%);box-shadow:0 0 0 2px var(--ink),0 3px 8px rgba(16,41,27,.35)}
+.pin.base.hl{transform:scale(1.7)}
+.pin.base.hl .tag{opacity:1}
+.chips [data-b]{cursor:default;transition:background .2s}
+.chips [data-b]:hover{background:#fff}
 [hidden]{display:none!important}
 .pin{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--paper),0 4px 10px rgba(16,41,27,.35);transform:scale(0);opacity:0;transition:transform .6s cubic-bezier(.34,1.56,.64,1),opacity .4s;transition-delay:var(--d,0s)}
 .pin.fp{background:#C71618}
@@ -774,6 +785,7 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
     <div class="map-grid" id="geo" data-step="1">
       <div class="map rv" style="--i:1" role="img" aria-label="Mapa de Paraguay con sedes y bases operativas">
         <div class="shape"></div>
+        <div class="halos" aria-hidden="true"></div>
         <div class="pins" id="geoPins"></div>
       </div>
       <div class="rv" style="--i:2">
@@ -787,7 +799,7 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
         </div>
         <div class="bases">
           <h3 data-k="bases">Bases operativas</h3>
-          <div class="blist"><span class="who al">Aerolink</span><div class="chips"><span>Villa Oliva / Eladia 2</span><span>Aragonesa</span><span>María Elena</span></div></div>
+          <div class="blist" id="alBases"><span class="who al">Aerolink</span><div class="chips"><span>Villa Oliva</span><span>Rosario</span><span>Concepción</span></div></div>
           <div class="blist" id="fpBases" hidden><span class="who fp">Fumipar</span><div class="chips"></div></div>
         </div>
         <div class="legend3">
@@ -2433,17 +2445,30 @@ const GEO={
   x:lon=>(lon+62.65)/8.39*100, y:lat=>(-19.29-lat)/8.32*100,
   sedes:[{n:'Asunción',o:'al',lat:-25.30,lon:-57.58,c:'Aerolink'},{n:'La Paloma',o:'fp',lat:-24.28,lon:-54.55,c:'Fumipar',r:1}],
   /* bases operativas: agregar aquí cada base con sus coordenadas (lat, lon) */
-  bases:[{n:'Villa Oliva / Eladia 2',o:'al',lat:-26.01,lon:-57.88}]
+  bases:[
+    {n:'Villa Oliva',o:'al',lat:-26.01,lon:-57.88},
+    {n:'Rosario',o:'al',lat:-24.42,lon:-57.12},
+    {n:'Concepción',o:'both',lat:-23.41,lon:-57.43},
+    {n:'Villa Ygatimí',o:'fp',lat:-24.12,lon:-55.64},
+    {n:'Bertoni',o:'fp',lat:-26.37,lon:-56.44},
+    {n:'San Ignacio',o:'fp',lat:-26.89,lon:-57.03},
+    {n:'Villa Franca',o:'fp',lat:-26.28,lon:-58.14}
+  ]
 };
 function geo(){
   const box=document.getElementById('geo'), pins=document.getElementById('geoPins'); if(!box) return;
   const mk=(p,cls,i)=>{ const s=document.createElement('span'); s.className='pin '+cls+' '+p.o+(p.r?' r':''); s.style.left=GEO.x(p.lon)+'%'; s.style.top=GEO.y(p.lat)+'%'; s.style.setProperty('--d',(i*.18)+'s');
     s.innerHTML='<span class="tag">'+p.n+(p.c?'<small>'+p.c+'</small>':'')+'</span>'; pins.appendChild(s); return s; };
-  const S=GEO.sedes.map((p,i)=>mk(p,'hq',i)), B=GEO.bases.map((p,i)=>mk(p,'base',i));
-  const fpb=GEO.bases.filter(b=>b.o==='fp'); if(fpb.length){ const l=document.getElementById('fpBases'); l.hidden=false; l.querySelector('.chips').innerHTML=fpb.map(b=>'<span>'+b.n+'</span>').join(''); }
+  const halos=box.querySelector('.halos');
+  const S=GEO.sedes.map((p,i)=>mk(p,'hq',i)), B=GEO.bases.map((p,i)=>mk(p,'base',i+1));
+  const H=GEO.bases.map((p,i)=>{ const h=document.createElement('span'); h.className='halo '+p.o; h.style.left=GEO.x(p.lon)+'%'; h.style.top=GEO.y(p.lat)+'%'; h.style.setProperty('--d',((i+1)*.18)+'s'); halos.appendChild(h); return h; });
+  const list=(o)=>GEO.bases.filter(b=>b.o===o||b.o==='both');
+  [['al','alBases'],['fp','fpBases']].forEach(([o,id])=>{ const l=document.getElementById(id); const arr=list(o); l.hidden=!arr.length;
+    l.querySelector('.chips').innerHTML=arr.map(b=>'<span data-b="'+GEO.bases.indexOf(b)+'">'+b.n+'</span>').join(''); });
+  box.querySelectorAll('.chips [data-b]').forEach(c=>{ const k=+c.dataset.b; c.addEventListener('mouseenter',()=>B[k].classList.add('hl')); c.addEventListener('mouseleave',()=>B[k].classList.remove('hl')); });
   let step=0, seen=false, auto;
   function go(n){ step=n; box.dataset.step=n; box.querySelectorAll('.st').forEach(b=>{ const on=+b.dataset.go===n; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); });
-    S.forEach(s=>s.classList.add('show')); B.forEach(s=>s.classList.toggle('show',n>=2)); }
+    S.forEach(s=>s.classList.add('show')); B.forEach(s=>s.classList.toggle('show',n>=2)); H.forEach(h=>h.classList.toggle('show',n>=2)); }
   box.querySelectorAll('.st').forEach(b=>b.addEventListener('click',()=>{ clearTimeout(auto); go(+b.dataset.go); }));
   box.querySelector('.map').addEventListener('click',()=>{ clearTimeout(auto); go(step===1?2:1); });
   new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting && !seen){ seen=true; go(1); auto=setTimeout(()=>go(2),RM?0:4200); } }),{threshold:.4}).observe(box);

@@ -473,6 +473,19 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
 .brandrow .fpw svg{height:34px;width:47px;display:block}
 @media (max-width:1100px){.eco3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.eco3{grid-template-columns:minmax(0,1fr)}}
+.vband{padding:0;justify-content:flex-end;min-height:100svh;background:#140f0b}
+.vb-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;z-index:0}
+.vb-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(10,22,15,.92) 0%,rgba(10,22,15,.55) 30%,rgba(10,22,15,0) 58%),linear-gradient(90deg,rgba(10,22,15,.55) 0%,rgba(10,22,15,0) 45%)}
+.vb-in{position:relative;z-index:2;padding:0 var(--gut) clamp(56px,10vh,110px)}
+.vband .h2,.vband .lead{color:#F3EEE3}
+.vband .h2 em{color:var(--gold-hi)}
+.vb-toggle{all:unset;cursor:pointer;margin-top:22px;display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#F3EEE3;padding:9px 14px;border:1px solid rgba(243,238,227,.35);border-radius:999px;transition:background .25s,border-color .25s}
+.vb-toggle:hover,.vb-toggle:focus-visible{background:rgba(243,238,227,.1);border-color:rgba(243,238,227,.6)}
+.vb-toggle .ic{width:10px;height:10px;display:inline-block;background:linear-gradient(90deg,currentColor 0 3px,transparent 3px 7px,currentColor 7px 10px)}
+.vb-toggle[aria-pressed="true"] .ic{background:none;width:0;height:0;border-left:9px solid currentColor;border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
+.vb-credit{position:absolute;right:var(--gut);bottom:18px;z-index:2;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,238,227,.55)}
+#pelican-vuelo{min-height:100svh}
+@media (max-width:860px){.vb-video{object-position:50% 40%}}
 .hero-logo svg,.close-logo svg{width:100%;height:auto;display:block}
 .brand .lg.alogo svg{width:112px;height:66px;margin:-10px 0 -10px -18px}
 .brand .chipl svg{width:108px;height:34px}
@@ -1126,6 +1139,21 @@ table.t td.sub{color:var(--ink-2);font-size:.8rem}
     </div>
     <p class="src rv" data-k="s11.src">Valores pro forma con ajustes de consolidación y sinergias (USD 112 a 140 mil por año); no son la suma simple de las facturaciones. Fuente: modelo financiero de combinación Aerolink–Fumipar.</p>
   </div>
+</section>
+
+<!-- ═════════ 05 · PELICAN EN VUELO (video) ═════════ -->
+<section class="s dark vband" id="pelican-vuelo" data-nav="nav.s19" data-ch="05">
+  <video class="vb-video" id="pelVideo" muted loop playsinline preload="metadata" poster="assets/pelican-vuelo.jpg" aria-label="Pelican 2 en vuelo, aplicando sobre un cultivo">
+    <source src="assets/pelican-vuelo.mp4" type="video/mp4">
+  </video>
+  <div class="vb-shade" aria-hidden="true"></div>
+  <div class="wrap vb-in">
+    <div class="eyebrow rv">05 · AeroVolt + Tabono</div>
+    <h2 class="h2 rv" style="--i:1" data-k="s19.h">Pelican 2 <em>en operación</em></h2>
+    <p class="lead rv" style="--i:2" data-k="s19.lead">Aplicación eléctrica y autónoma a baja altura, en pasadas continuas sobre el cultivo.</p>
+    <button type="button" class="vb-toggle rv" style="--i:3" id="pelToggle" aria-pressed="false"><span class="ic"></span><span class="vb-lab">Pausar</span></button>
+  </div>
+  <p class="vb-credit" data-k="vb.credit">Imágenes: Pyka</p>
 </section>
 
 <!-- ═════════ 05 · PELICAN 2 ═════════ -->
@@ -1854,6 +1882,10 @@ const T = {
  'hero.tag':['A força aérea que impulsiona a agricultura.','The air force driving agriculture forward.'],
  'hero.cue':['Role','Scroll'],
  'skip':['Pular ›','Skip ›'],
+ 's19.h':['Pelican 2 <em>em operação</em>','Pelican 2 <em>in operation</em>'],
+ 's19.lead':['Aplicação elétrica e autônoma a baixa altura, em passadas contínuas sobre a lavoura.','Electric, autonomous low-altitude application in continuous passes over the crop.'],
+ 'vb.pause':['Pausar','Pause'],'vb.play':['Reproduzir','Play'],
+ 'vb.credit':['Imagens: Pyka','Footage: Pyka'],
  'ch1':['Aerolink hoje','Aerolink today'],
  'ch2':['Ativos e frota','Assets and fleet'],
  'ch3':['Solidez financeira','Financial strength'],
@@ -2008,9 +2040,9 @@ const T = {
  'cl.h':['Da aviação agrícola <em>a um ecossistema de soluções para o agro.</em>','From agricultural aviation <em>to an ecosystem of solutions for agribusiness.</em>'],
  'cl.v':['Integrar · Especializar · Inovar · Crescer','Integrate · Specialize · Innovate · Grow'],
  'cr':['Desenvolvido por','Designed by'],
- 'nav.hero':['Capa','Cover'],'nav.s2':['Acionistas','Shareholders'],'nav.s3':['Em números','Key figures'],'nav.s4':['Clientes','Clients'],'nav.s5':['Mercado','Market'],'nav.s6':['Presença','Footprint'],'nav.s7':['Frota','Fleet'],'nav.s8':['Finanças','Financials'],'nav.s9':['Fumipar','Fumipar'],'nav.s10':['Tese','Thesis'],'nav.s11':['Combinada','Combined'],'nav.s12':['Pelican 2','Pelican 2'],'nav.s13':['Economia','Unit economics'],'nav.s14':['Roteiro','Roadmap'],'nav.s17':['Ecossistema','Ecosystem'],'nav.s18':['Sócio estratégico','Strategic partner'],'nav.s16':['Encerramento','Close']
+ 'nav.hero':['Capa','Cover'],'nav.s2':['Acionistas','Shareholders'],'nav.s3':['Em números','Key figures'],'nav.s4':['Clientes','Clients'],'nav.s5':['Mercado','Market'],'nav.s6':['Presença','Footprint'],'nav.s7':['Frota','Fleet'],'nav.s8':['Finanças','Financials'],'nav.s9':['Fumipar','Fumipar'],'nav.s10':['Tese','Thesis'],'nav.s11':['Combinada','Combined'],'nav.s12':['Pelican 2','Pelican 2'],'nav.s13':['Economia','Unit economics'],'nav.s14':['Roteiro','Roadmap'],'nav.s17':['Ecossistema','Ecosystem'],'nav.s19':['Pelican em voo','Pelican in flight'],'nav.s18':['Sócio estratégico','Strategic partner'],'nav.s16':['Encerramento','Close']
 };
-const NAV_ES = {'nav.hero':'Portada','nav.s2':'Accionistas','nav.s3':'En números','nav.s4':'Clientes','nav.s5':'Mercado','nav.s6':'Presencia','nav.s7':'Flota','nav.s8':'Finanzas','nav.s9':'Fumipar','nav.s10':'Tesis','nav.s11':'Combinada','nav.s12':'Pelican 2','nav.s13':'Economía','nav.s14':'Hoja de ruta','nav.s17':'Ecosistema','nav.s18':'Socio estratégico','nav.s16':'Cierre'};
+const NAV_ES = {'nav.hero':'Portada','nav.s2':'Accionistas','nav.s3':'En números','nav.s4':'Clientes','nav.s5':'Mercado','nav.s6':'Presencia','nav.s7':'Flota','nav.s8':'Finanzas','nav.s9':'Fumipar','nav.s10':'Tesis','nav.s11':'Combinada','nav.s12':'Pelican 2','nav.s13':'Economía','nav.s14':'Hoja de ruta','nav.s17':'Ecosistema','nav.s19':'Pelican en vuelo','vb.play':'Reproducir','vb.pause':'Pausar','nav.s18':'Socio estratégico','nav.s16':'Cierre'};
 const CH = {'01':'ch1','02':'ch2','03':'ch3','04':'ch4','05':'ch5','06':'ch6'};
 const CH_ES = {ch1:'Aerolink hoy',ch2:'Activos y flota',ch3:'Solidez financiera',ch4:'Fumipar + fusión',ch5:'AeroVolt + Tabono',ch6:'Socio estratégico'};
 let LANG='es';
@@ -2367,7 +2399,19 @@ function intro(){
   document.getElementById('iSkip').addEventListener('click',done);
   addEventListener('keydown',function k(e){ if(box.isConnected && !box.classList.contains('out')){ done(); } removeEventListener('keydown',k); },{once:true});
 }
+/* video Pelican: reproduce solo cuando está visible */
+function pelVideo(){
+  const v=document.getElementById('pelVideo'), b=document.getElementById('pelToggle'); if(!v) return;
+  let user=RM; const lab=b.querySelector('.vb-lab');
+  function ui(){ const paused=v.paused; b.setAttribute('aria-pressed',paused); lab.textContent=tr(paused?'vb.play':'vb.pause')||(paused?'Reproducir':'Pausar'); }
+  document.querySelectorAll('.lang button').forEach(x=>x.addEventListener('click',()=>setTimeout(ui,0)));
+  v.addEventListener('play',ui); v.addEventListener('pause',ui);
+  b.addEventListener('click',()=>{ if(v.paused){ user=false; v.play().catch(()=>{}); } else { user=true; v.pause(); } });
+  new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting && !user){ v.play().catch(()=>{}); } else if(!e.isIntersecting){ v.pause(); } }); },{threshold:.35}).observe(v);
+  ui();
+}
 buildNav(); setLang(start); updateChap();
+try{ pelVideo(); }catch(e){ console.warn(e); }
 try{ intro(); }catch(e){ console.warn(e); const b=document.getElementById('intro'); if(b) b.remove(); document.documentElement.style.overflow=''; }
 try{ hero3D(); }catch(e){ console.warn(e); }
 })();
